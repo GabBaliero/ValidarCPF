@@ -59,3 +59,4 @@ appsettings.*.json
 # Cache gerado pelo build
 AssemblyInfoInputs.cache
 AssemblyInfo.cs text diff=csharp
+/obj/Debug/net9.0
