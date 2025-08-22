@@ -23,7 +23,7 @@ public class Program
     }
     static int VerificarDigitos(string cpf, int VerificarDigito)
     {
-        int[] cpfArray = cpf.Select(x => (int)char.GetNumericValue(x)).ToArray(); _cpfFormatado = cpfArray;
+        int[] cpfArray = cpf.Select(x => (int)char.GetNumericValue(x)).ToArray(); _cpfFormatado = cpfArray.ToArray();
         var (index, peso, multiplo) = VerificarDigito == 1 ? (9, 10, 11) : (10, 11, 12);
         for (int i = 0; i < index; i++, --peso)
             cpfArray[i] *= peso;
