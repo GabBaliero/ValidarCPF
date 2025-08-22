@@ -1,6 +1,7 @@
 ## Build results
 bin/
 obj/
+/obj/Debug
 [Bb]uild/
 [Dd]ebug/
 [Rr]elease/
@@ -59,4 +60,4 @@ appsettings.*.json
 # Cache gerado pelo build
 AssemblyInfoInputs.cache
 AssemblyInfo.cs text diff=csharp
-/obj/Debug/net9.0
+
