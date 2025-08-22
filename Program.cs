@@ -1,38 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
+using System.Text.RegularExpressions;
 public class Program
 {
     private static string _cpf = "123.456.789-09";
-    private static int[] _cpfFormatado;
-    private static int _dv1;
-    private static int _dv2;
+    private static int[] _cpfFormatado = { };
     public static void Main()
     {
-        (_dv1, _dv2) = Digitos(_cpf);
-        Validar(_dv1, _dv2);
+        try
+        {
+            _cpf = VerificarCpf(_cpf);
+            var (_dv1, _dv2) = Digitos(_cpf);
+            Validar(_dv1, _dv2);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
-
     static int VerificarDigitos(string cpf, int VerificarDigito)
     {
-        cpf = cpf.Replace(".", "").Replace("-", "");
         int[] cpfArray = cpf.ToCharArray().Select(x => int.Parse(x.ToString())).ToArray(); _cpfFormatado = cpfArray;
         var (index, peso, multiplo) = VerificarDigito == 1 ? (9, 10, 11) : (10, 11, 12);
         for (int i = 0; i < index; i++, --peso)
             cpfArray[i] *= peso;
         int sum = cpfArray.Take(index).Sum(c => int.Parse(c.ToString()));
         VerificarDigito = (sum % 11) < 2 ? 0 : (11 - sum % 11);
-        bool areEqual = VerificarDigito.Equals(cpfArray[index]);
         return VerificarDigito;
     }
     static (int, int) Digitos(string cpf) => (VerificarDigitos(_cpf, 1), VerificarDigitos(_cpf, 2));
-
-    static void Validar(int dv1, int dv2)
+    static void Validar(int dv1, int dv2) => Console.WriteLine((dv1, dv2) == (_cpfFormatado[9], _cpfFormatado[10]) ? "CPF válido!" : "CPF inválido!");
+    
+    static string VerificarCpf(string cpf)
     {
-        bool iguais = (dv1, dv2) == (_cpfFormatado[9], _cpfFormatado[10]);
-        string output = iguais != false ? output = "CPF válido" : output = "CPF inválido";
-        Console.WriteLine(output);
+        cpf = cpf.Replace(".", "").Replace("-", "").Trim();
+        if (cpf.All(c => c == cpf[0]) && cpf.Length != 11) return string.Empty;       
+        if (Regex.IsMatch(cpf, @"0{5,}") && Regex.IsMatch(cpf, @"[a-zA-Z]")) return string.Empty;     
+        return cpf;
     }
-
 }
