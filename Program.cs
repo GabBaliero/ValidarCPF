@@ -23,7 +23,7 @@ public class Program
     }
     static int VerificarDigitos(string cpf, int VerificarDigito)
     {
-        int[] cpfArray = cpf.ToCharArray().Select(x => int.Parse(x.ToString())).ToArray(); _cpfFormatado = cpfArray;
+        int[] cpfArray = cpf.Select(x => (int)char.GetNumericValue(x)).ToArray(); _cpfFormatado = cpfArray;
         var (index, peso, multiplo) = VerificarDigito == 1 ? (9, 10, 11) : (10, 11, 12);
         for (int i = 0; i < index; i++, --peso)
             cpfArray[i] *= peso;
@@ -33,7 +33,6 @@ public class Program
     }
     static (int, int) Digitos(string cpf) => (VerificarDigitos(_cpf, 1), VerificarDigitos(_cpf, 2));
     static void Validar(int dv1, int dv2) => Console.WriteLine((dv1, dv2) == (_cpfFormatado[9], _cpfFormatado[10]) ? "CPF válido!" : "CPF inválido!");
-    
     static string VerificarCpf(string cpf)
     {
         cpf = cpf.Replace(".", "").Replace("-", "").Trim();
