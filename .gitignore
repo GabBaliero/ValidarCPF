@@ -1,0 +1,57 @@
+## Build results
+bin/
+obj/
+[Bb]uild/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+## VS/IDE files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## MAUI / Xamarin specific
+*.apk
+*.aab
+*.ap_
+*.ipa
+*.app
+*.xcworkspace/
+*.xcuserstate
+*.xcuserdata/
+*.DS_Store
+
+## Logs / cache
+*.log
+*.tlog
+*.vscode/
+*.idea/
+*.cache
+*.mfractor/
+*.localhistory/
+
+## NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+*.psmdcp
+packages/
+.nuget/
+project.lock.json
+
+## Secrets / configs
+*.config
+*.env
+secrets.json
+appsettings.*.json
+
+## Others
+*.db
+*.sqlite
+*.swp
