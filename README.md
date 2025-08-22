@@ -13,7 +13,7 @@ O algoritmo:
 
 1. **Clone este repositório**:
    ```bash
-   git clone https://github.com/GabBaliero/validar-cpf.git
+   git clone https://github.com/GabBaliero/ValidarCPF.git
    ```
    
 2. **Em seu editor ou IDE Compile e Execute**:
