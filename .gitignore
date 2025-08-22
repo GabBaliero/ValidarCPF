@@ -55,3 +55,7 @@ appsettings.*.json
 *.db
 *.sqlite
 *.swp
+
+# Cache gerado pelo build
+AssemblyInfoInputs.cache
+AssemblyInfo.cs text diff=csharp
